@@ -1,4 +1,5 @@
-import React from "react";
+
+import React, { useEffect, useState, useContext } from "react";
 import PropTypes from "prop-types";
 
 class ScrollToTop extends React.Component {
