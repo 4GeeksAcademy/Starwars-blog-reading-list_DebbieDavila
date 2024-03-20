@@ -16,6 +16,8 @@ export function Home() {
 		fetch("https://www.swapi.tech/api/people/")
 			.then((resp) => resp.json())
 			.then((data) => setCharacters(data.results));
+
+		fetch("GET Favorites from your database")
 	}, []);
 
 	return (

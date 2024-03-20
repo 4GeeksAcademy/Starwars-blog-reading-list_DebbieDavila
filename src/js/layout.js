@@ -6,7 +6,7 @@ import { Details } from "./views/characterDetails";
 
 
 import { Home } from "./views/home";
-import { Demo } from "./views/favorites";
+import { Favorites } from "./views/favorites";
 import { Single } from "./views/single";
 import injectContext from "./store/appContext";
 
@@ -26,6 +26,10 @@ const Layout = () => {
 	const [favorites, setFavorites] = useState([]);
 	const [cats, setCats] = useState([]);
 
+	const postFavorites = () => {
+		fetch("POST data to the database")
+	}
+
 	return (
 		<div>
 			<AppContext.Provider value={{ favorites, setFavorites, cats, setCats }}>
@@ -34,7 +38,7 @@ const Layout = () => {
 						<Navbar />
 						<Routes>
 							<Route path="/" element={<Home />} />
-							<Route path="/demo" element={<Demo />} />
+							<Route path="/favorites" element={<Favorites />} />
 							<Route path="/single/:theid" element={<Single />} />
 							<Route path="/details/:id" element={<Details />} />
 							<Route path="*" element={<h1>Not found!</h1>} />

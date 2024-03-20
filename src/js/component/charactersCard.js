@@ -40,11 +40,18 @@ export const Characters = (props) => {
 
           <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 
-          <Link to={"/details/" + props.character.uid}><button href="#" className="btn btn-primary">See Details</button></Link>
-          &nbsp;<BookmarkHeartFill onClick={() => context.setFavorites(
-            [...context.favorites, character]
-          )} href="#" className="" size="60" color="red" style={{ paddingLeft: '10%' }} />
+          <Link to={"/details/" + props.character.uid}>
+            <button href="#" className="btn btn-primary">
+              See Details
+            </button>
+          </Link>
 
+          &nbsp;
+
+          <span onClick={() => context.postFavorites(character, 'character')
+          }>
+            <BookmarkHeartFill href="#" className="" size="60" color="red" style={{ paddingLeft: '10%' }} />
+          </span>
 
 
         </div>

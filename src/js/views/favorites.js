@@ -6,8 +6,16 @@ import { Context } from "../store/appContext";
 import "../../styles/demo.css";
 import { AppContext } from "../layout";
 
-export const Demo = () => {
+export const Favorites = () => {
 	const { favorites, setFavorites } = useContext(AppContext);
+
+	useEffect(() => {
+		fetch("favorites")
+			.then((resp) => resp.json())
+			.then((data) => setFavorites(data.results));
+
+		fetch("GET Favorites from your database")
+	}, []);
 
 	return (
 		<div className="container">
