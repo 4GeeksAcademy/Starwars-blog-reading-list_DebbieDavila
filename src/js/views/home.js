@@ -9,23 +9,22 @@ import { AppContext } from "../layout";
 
 
 export function Home() {
-	const [characters, setCharacters] = useState([]);
 	const context = useContext(AppContext);
 
 	useEffect(() => {
 		fetch("https://www.swapi.tech/api/people/")
 			.then((resp) => resp.json())
-			.then((data) => setCharacters(data.results));
-
-		fetch("GET Favorites from your database")
-	}, []);
+			.then((data) => {
+				context.setCharacters(data.results);
+			})
+	}, [])
 
 	return (
 		<div className="container">
 			<div className="d-flex flex-wrap characters" >
-				{characters.length > 1 ? (characters.map((character, index) => {
+				{context.characters.length > 1 ? (context.characters.map((character, index) => {
 					console.log(character)
-					return <Characters character={character} />
+					return <Characters key={index} character={character} />
 				}))
 					: <h1>Loading.......</h1>
 				}

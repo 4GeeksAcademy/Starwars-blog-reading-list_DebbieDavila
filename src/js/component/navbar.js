@@ -25,10 +25,7 @@ export const Navbar = () => {
 				<Link to="/favorites">
 					<button className="btn btn-primary" style={{ color: 'red', paddingRight: '30px' }}>Favorites</button>
 				</Link>
-
-
 			</div>
 		</nav>
 	);
-
 }

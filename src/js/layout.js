@@ -12,6 +12,7 @@ import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+import { Type } from "react-bootstrap-icons";
 
 export const AppContext = React.createContext();
 export const CatContext = React.createContext();
@@ -24,15 +25,27 @@ const Layout = () => {
 	const basename = process.env.BASENAME || "";
 
 	const [favorites, setFavorites] = useState([]);
-	const [cats, setCats] = useState([]);
+	const [characters, setCharacters] = useState([]);
 
-	const postFavorites = () => {
-		fetch("POST data to the database")
+	const postFavorites = (entity, id, entity_type) => {
+		fetch('https://ominous-xylophone-q74qq55gr9wf6wrv-3000.app.github.dev/favorites', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({
+				owner: 1,
+				entity_id: id,
+				name: entity.name,
+				entity_type: entity_type
+			})
+		})
+			.then((resp) => resp.json())
+			.then((data) => setFavorites(data));
 	}
+
 
 	return (
 		<div>
-			<AppContext.Provider value={{ favorites, setFavorites, cats, setCats }}>
+			<AppContext.Provider value={{ favorites, setFavorites, postFavorites, characters, setCharacters }}>
 				<BrowserRouter basename={basename}>
 					<ScrollToTop>
 						<Navbar />

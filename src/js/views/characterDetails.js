@@ -31,6 +31,24 @@ export const Details = (props) => {
         }
     }, [character]);
 
+    useEffect(() => {
+        if (planet && planet.name) {
+            fetch(`https://starwars-visualguide.com/assets/img/planets/${planets.name}.jpg`)
+                .then((resp) => {
+                    if (resp.ok) {
+                        setImageUrl(`https://starwars-visualguide.com/assets/img/planets/${planet.name}.jpg`);
+                    } else {
+                        console.error("Image fetch failed:", resp.status);
+                        setImageUrl(""); // Set a default image or handle the error appropriately
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error fetching image:", error);
+                    setImageUrl(""); // Set a default image or handle the error appropriately
+                });
+        }
+    }, [planet]);
+
     return (
         <div>
             <div className="card" style={{ width: "18rem" }}>
